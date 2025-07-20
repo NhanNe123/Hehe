@@ -7,6 +7,153 @@
   <meta name="description" content="Cửa hàng thú cưng uy tín, chất lượng">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Responsive cho Header và Footer */
+@media (max-width: 1024px) {
+    /* Điều chỉnh chung cho các màn hình trung bình */
+    header {
+        flex-wrap: wrap; /* Cho phép các mục trong header xuống dòng */
+        justify-content: center; /* Căn giữa các mục khi xuống dòng */
+        padding: 10px;
+    }
+
+    #logo {
+        height: 80px;
+        width: 80px;
+        margin-bottom: 10px; /* Thêm khoảng cách dưới logo */
+    }
+
+    .header-right-content {
+        flex-direction: column; /* Xếp chồng các mục trong phần bên phải của header */
+        align-items: center; /* Căn giữa các mục khi xếp chồng */
+        width: 100%; /* Chiếm toàn bộ chiều rộng */
+        gap: 10px; /* Giảm khoảng cách giữa các mục */
+    }
+
+    nav {
+        flex-wrap: wrap; /* Cho phép các liên kết điều hướng xuống dòng */
+        justify-content: center; /* Căn giữa các liên kết */
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        padding: 6px 10px; /* Giảm padding cho các liên kết điều hướng */
+        font-size: 0.9em; /* Giảm kích thước chữ */
+    }
+
+    .search-cart-wrapper {
+        flex-direction: column; /* Xếp chồng thanh tìm kiếm và nút giỏ hàng */
+        width: 100%;
+        gap: 10px;
+    }
+
+    .search-box {
+        width: 100%; /* Thanh tìm kiếm chiếm toàn bộ chiều rộng */
+    }
+
+    .search-box input {
+        width: calc(100% - 70px); /* Điều chỉnh chiều rộng input để phù hợp */
+    }
+
+    .footer-columns-wrapper {
+        flex-direction: column; /* Xếp chồng các cột trong footer */
+        align-items: center; /* Căn giữa các cột */
+        padding: 0 10px;
+    }
+
+    .footer-column {
+        min-width: unset; /* Bỏ giới hạn chiều rộng tối thiểu */
+        max-width: 90%; /* Đặt chiều rộng tối đa cho cột để chúng không quá rộng */
+        text-align: center; /* Căn giữa nội dung trong cột */
+        margin-bottom: 20px; /* Thêm khoảng cách dưới mỗi cột */
+    }
+
+    .social-icons-wrapper {
+        justify-content: center; /* Căn giữa các icon mạng xã hội */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Điều chỉnh cho màn hình điện thoại và máy tính bảng nhỏ hơn */
+    h1 {
+        font-size: 24px; /* Giảm kích thước tiêu đề H1 */
+    }
+
+    .slideshow-container {
+        width: 90%; /* Thu nhỏ slideshow */
+        height: 150px; /* Giảm chiều cao slideshow */
+    }
+
+    .mySlides img {
+        height: 150px; /* Giảm chiều cao ảnh trong slideshow */
+    }
+
+    .prev,
+    .next {
+        font-size: 18px; /* Giảm kích thước mũi tên điều hướng slideshow */
+        padding: 8px 10px;
+        margin-top: -15px;
+    }
+
+    /* Các điều chỉnh chi tiết hơn cho header trên mobile */
+    .header-right-content {
+        margin-top: 10px; /* Thêm khoảng cách với logo */
+    }
+
+    nav {
+        flex-direction: column; /* Xếp chồng các mục điều hướng */
+        gap: 5px;
+        align-items: center; /* Căn giữa các liên kết */
+    }
+
+    .dropdown {
+        width: 100%; /* Dropdown chiếm toàn bộ chiều rộng */
+        text-align: center;
+    }
+
+    .dropdown-content {
+        position: static; /* Dropdown xuất hiện ngay bên dưới */
+        width: 100%;
+        box-shadow: none; /* Bỏ shadow để trông gọn hơn */
+        border-top: 1px solid #eee;
+    }
+
+    .footer-column h2 {
+        font-size: 1.1em; /* Giảm kích thước tiêu đề footer */
+    }
+
+    .footer-column p,
+    .footer-column ul li a {
+        font-size: 0.9em; /* Giảm kích thước chữ trong footer */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Điều chỉnh cho màn hình điện thoại rất nhỏ */
+    .bd1 {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .search-box select,
+    .search-box input,
+    .search-box button {
+        height: 32px; /* Giảm chiều cao các trường tìm kiếm */
+        font-size: 12px; /* Giảm kích thước chữ */
+    }
+
+    .cart-button {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        font-size: 16px;
+    }
+
+    .view-detail-button, .view-detail-button2 {
+        padding: 8px 10px; /* Giảm padding cho nút detail */
+        font-size: 0.8em;
+    }
+}
     header {
       display: flex;
       align-items: center;
@@ -365,29 +512,99 @@
       border-color: #8b76cc;
     }
 
-    @media (max-width: 1200px) {
+    /* Responsive cho phần nội dung chính */
+    @media (max-width: 1024px) {
       .products {
         grid-template-columns: repeat(3, 1fr);
       }
+
+      section {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      aside {
+        width: 100%;
+        margin-top: 0;
+      }
+
+      aside ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      aside li {
+        margin: 0;
+      }
+
+      aside a {
+        padding: 8px 15px;
+        background-color: #f5f5f5;
+        border-radius: 20px;
+        display: block;
+      }
+
+      #sortSelect {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px auto;
+        display: block;
+      }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       .products {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      article {
+        padding: 10px;
+      }
+
+      article img {
+        height: 150px;
+      }
+
+      article h3 {
+        font-size: 1em;
+      }
+
+      article p {
+        font-size: 0.85em;
+      }
+
+      .price-container {
+        margin: 5px 0;
+      }
+
+      del {
+        font-size: 0.8em;
+      }
+
+      strong {
+        font-size: 1.1em;
+      }
+
+      button {
+        padding: 6px 12px;
+        font-size: 0.9em;
+      }
     }
 
-    @media (max-width: 600px) {
-      section {
-        flex-direction: column;
-      }
-      
-      aside {
-        width: 100%;
-      }
-
+    @media (max-width: 480px) {
       .products {
         grid-template-columns: 1fr;
+      }
+
+      article {
+        margin-bottom: 15px;
+      }
+
+      aside a {
+        font-size: 0.9em;
+        padding: 6px 12px;
       }
     }
        footer {
@@ -786,6 +1003,90 @@
   </main>
 
   <script>
+    // Lưu trữ thứ tự ban đầu của sản phẩm
+    let originalProducts = [];
+    
+    // Hàm chuyển đổi chuỗi giá tiền sang số
+    function convertPrice(priceStr) {
+      return parseInt(priceStr.replace(/[^\d]/g, ''));
+    }
+
+    // Hàm thêm hiệu ứng fade
+    function addFadeEffect(products) {
+      products.forEach(product => {
+        product.classList.add('fade-out');
+      });
+      
+      return new Promise(resolve => {
+        setTimeout(() => {
+          products.forEach(product => {
+            product.classList.remove('fade-out');
+            product.classList.add('fade-in');
+          });
+          resolve();
+        }, 300);
+      });
+    }
+
+    // Hàm sắp xếp sản phẩm
+    async function sortProducts(sortType) {
+      const container = document.querySelector('.products');
+      const products = Array.from(container.getElementsByTagName('article'));
+      
+      // Lưu trữ thứ tự ban đầu nếu chưa có
+      if (originalProducts.length === 0) {
+        originalProducts = [...products];
+      }
+
+      // Thêm hiệu ứng fade out
+      await addFadeEffect(products);
+      
+      let sortedProducts;
+      if (sortType === 'default') {
+        sortedProducts = [...originalProducts];
+      } else {
+        sortedProducts = [...products].sort((a, b) => {
+          const priceA = convertPrice(a.querySelector('strong').textContent);
+          const priceB = convertPrice(b.querySelector('strong').textContent);
+          const nameA = a.querySelector('h3').textContent.trim();
+          const nameB = b.querySelector('h3').textContent.trim();
+          
+          switch(sortType) {
+            case 'price-asc':
+              return priceA - priceB;
+            case 'price-desc':
+              return priceB - priceA;
+            case 'name-asc':
+              return nameA.localeCompare(nameB, 'vi');
+            case 'name-desc':
+              return nameB.localeCompare(nameA, 'vi');
+            default:
+              return 0;
+          }
+        });
+      }
+
+      // Xóa sản phẩm hiện tại
+      container.innerHTML = '';
+
+      // Thêm lại sản phẩm theo thứ tự mới
+      sortedProducts.forEach(product => {
+        container.appendChild(product);
+      });
+
+      // Thêm hiệu ứng fade in
+      setTimeout(() => {
+        sortedProducts.forEach(product => {
+          product.classList.remove('fade-in');
+        });
+      }, 300);
+    }
+
+    // Xử lý sự kiện thay đổi select
+    document.getElementById('sortSelect').addEventListener('change', function() {
+      sortProducts(this.value);
+    });
+
     // Khởi tạo giỏ hàng trong localStorage nếu chưa có
     if (!localStorage.getItem('cart')) {
       localStorage.setItem('cart', JSON.stringify([]));
@@ -799,8 +1100,7 @@
           id: article.querySelector('a').href.split('/').pop(),
           name: article.querySelector('h3').textContent,
           price: article.querySelector('strong').textContent,
-          image: article.querySelector('img').src,
-          type: 'dog' // Thêm loại sản phẩm là chó
+          image: article.querySelector('img').src
         };
 
         // Lấy giỏ hàng hiện tại
@@ -854,53 +1154,6 @@
         }
       });
     });
-
-    // Hàm chuyển đổi chuỗi giá tiền sang số
-    function convertPrice(priceStr) {
-      return parseInt(priceStr.replace(/[^\d]/g, ''));
-    }
-
-    // Hàm sắp xếp sản phẩm
-    function sortProducts(sortType) {
-      const container = document.querySelector('.products');
-      const products = Array.from(container.getElementsByTagName('article'));
-      
-      products.sort((a, b) => {
-        const priceA = convertPrice(a.querySelector('strong').textContent);
-        const priceB = convertPrice(b.querySelector('strong').textContent);
-        const nameA = a.querySelector('h3').textContent.trim();
-        const nameB = b.querySelector('h3').textContent.trim();
-        
-        switch(sortType) {
-          case 'price-asc':
-            return priceA - priceB;
-          case 'price-desc':
-            return priceB - priceA;
-          case 'name-asc':
-            return nameA.localeCompare(nameB, 'vi');
-          case 'name-desc':
-            return nameB.localeCompare(nameA, 'vi');
-          default:
-            // Giữ nguyên thứ tự ban đầu
-            return Array.from(container.children).indexOf(a) - Array.from(container.children).indexOf(b);
-        }
-      });
-
-      // Xóa sản phẩm hiện tại
-      container.innerHTML = '';
-
-      // Thêm lại sản phẩm theo thứ tự mới
-      products.forEach(product => container.appendChild(product));
-    }
-
-    // Xử lý sự kiện thay đổi select
-    document.getElementById('sortSelect').addEventListener('change', function() {
-      sortProducts(this.value);
-    });
-
-    // Lưu trữ thứ tự ban đầu của sản phẩm
-    const container = document.querySelector('.products');
-    const originalOrder = Array.from(container.children);
   </script>
   <footer>
       <div class="footer-columns-wrapper">
