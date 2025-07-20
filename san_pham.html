@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <title>KagPet - Phụ kiện thú cưng</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cửa hàng phụ kiện thú cưng chất lượng cao">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+       header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      border-bottom: 1px solid #eee;
+      gap: 5px;
+      background-color: bisque;
+    }
+
+    #logo {
+      height: 100px;
+      width: 100px;
+      flex-shrink: 0;
+    }
+
+    .header-right-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+      margin-top: 0;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    nav > * {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background-color: gainsboro;
+    }
+
+    .search-cart-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box select,
+    .search-box input,
+    .search-box button {
+      height: 36px;
+      border: 1px solid #999;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .search-box select {
+      padding: 0 15px;
+      border-right: none;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+
+    .search-box input {
+      padding: 0 10px;
+      width: 200px;
+      border-right: none;
+    }
+
+    .search-box button {
+      padding: 0 15px;
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border-radius: 4px;
+      border: 1px solid black;
+    }
+
+    .search-box button:hover {
+      background-color: gainsboro;
+      color: black;
+    }
+
+    .cart-button {
+      background-color: #8b76cc;
+      color: white;
+      padding: 0;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+      border: 1px solid black;
+      box-sizing: border-box;
+    }
+
+    .cart-button:hover {
+      background-color: gainsboro;
+    }
+
+    .dropdown > a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: gainsboro;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      /* line-height: 1.6; */
+      padding: 20px;
+      background-color: gainsboro;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #8b76cc;
+    }
+
+    h1, h2, h3, h4 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    section {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+
+    aside {
+      width: 250px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      height: fit-content;
+    }
+
+    aside ul {
+      list-style: none;
+    }
+
+    aside li {
+      margin: 10px 0;
+    }
+
+    aside a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    aside a:hover {
+      color: #8b76cc;
+    }
+
+    select.filter {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      flex: 1;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    article {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    article:hover {
+      transform: translateY(-5px);
+    }
+
+    article img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    article h3 {
+      font-size: 1.1em;
+      margin: 10px 0;
+      color: #333;
+      flex-grow: 0;
+    }
+
+    article p {
+      margin: 8px 0;
+      color: #666;
+      font-size: 0.9em;
+      flex-grow: 1;
+    }
+
+    .price-container {
+      margin: 10px 0;
+    }
+
+    del {
+      color: #999;
+      font-size: 0.9em;
+      display: block;
+    }
+
+    strong {
+      color: #e44d26;
+      font-size: 1.2em;
+      display: block;
+      margin-top: 5px;
+    }
+
+    .button-container {
+      margin-top: auto;
+    }
+
+    button {
+      background: #8b76cc;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      margin: 10px 0 5px 0;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #7561b7;
+    }
+
+    article a {
+      display: inline-block;
+      color: #8b76cc;
+      text-decoration: none;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+
+    article a:hover {
+      color: #7561b7;
+    }
+
+    .pagination {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .pagination ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .pagination a {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.3s;
+    }
+
+    .pagination a:hover {
+      background: #8b76cc;
+      color: white;
+      border-color: #8b76cc;
+    }
+
+    @media (max-width: 1200px) {
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        flex-direction: column;
+      }
+      
+      aside {
+        width: 100%;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+    }
+     footer {
+        background-color: bisque;
+        padding: 20px 0;
+        border-top: 1px solid #eee;
+        justify-content: space-around;
+      }
+
+      .footer-columns-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        max-width: 1200px; /* Thêm max-width để footer không quá rộng */
+        margin: 0 auto; /* Căn giữa footer */
+        padding: 0 20px; /* Padding ngang để không bị dính sát lề */
+      }
+
+      /* Kiểu dáng chung cho mỗi cột trong footer */
+      .footer-column {
+        flex: 1;
+        min-width: 240px;
+        max-width: 280px;
+        margin: 10px;
+        padding: 15px;
+      }
+
+      /* Kiểu dáng cho tiêu đề cột */
+      .footer-column h2 {
+        color: black;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+      }
+
+      /* Style cho các liên kết trong cột SHOP và KAGPET */
+      .footer-column ul {
+        list-style: none; /* Bỏ dấu chấm đầu dòng của ul */
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-column ul li a {
+        color: black; /* Màu chữ mặc định */
+        text-decoration: none; /* Bỏ gạch chân mặc định */
+        position: relative; /* Quan trọng cho pseudo-element */
+        display: inline-block; /* Quan trọng để pseudo-element có thể căn chỉnh */
+        padding-bottom: 2px; /* Khoảng cách giữa chữ và gạch chân */
+        font-weight: normal; /* Đảm bảo chữ không in đậm mặc định */
+        transition: font-weight 0.3s ease, color 0.3s ease; /* Hiệu ứng mượt mà */
+      }
+
+      .footer-column ul li a::after {
+        content: "";
+        position: absolute;
+        width: 0%; /* Ban đầu gạch chân không có chiều rộng */
+        height: 2px;
+        background-color: black; /* Màu gạch chân */
+        left: 0;
+        bottom: 0;
+        transition: width 0.3s ease-in-out; /* Hiệu ứng chạy từ trái sang phải */
+      }
+
+      .footer-column ul li a:hover {
+        font-weight: bold; /* In đậm chữ khi hover */
+      }
+
+      .footer-column ul li a:hover::after {
+        width: 100%; /* Gạch chân mở rộng 100% khi hover */
+      }
+
+      /* Style cho các đoạn văn bản thông thường trong cột LIÊN HỆ */
+      .footer-column p {
+        margin-bottom: 8px;
+        font-size: 0.95em;
+        color: black;
+        line-height: 1.4;
+        padding-bottom: 8px;
+      }
+
+      .footer-column.lienlac p {
+        border-bottom: 1px dotted black;
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .footer-column.lienlac p:first-of-type {
+        border-top: 1px dotted black;
+      }
+
+      .lienlac p i {
+        width: 20px;
+        text-align: center;
+        margin-right: 5px;
+      }
+
+      .social-icons-wrapper {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+        justify-content: center;
+      }
+
+      .social-icons-wrapper a {
+        color: black;
+        background-color: white;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        font-size: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .fb iframe,
+      .fb .fb_iframe_widget,
+      .fb .fb_iframe_widget span,
+      .fb .fb_iframe_widget iframe,
+      .yb iframe {
+        max-width: 100%;
+        height: 150px;
+        display: block;
+      }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="trangchu.html">
+      <img src="logopet.png" id="logo" alt="Logo KAO PET" />
+    </a>
+
+    <div class="header-right-content">
+      <nav>
+        <a href="trangchu.html">Trang chủ</a>
+        <div class="dropdown">
+          <a href="thucung.html">Thú Cưng</a>
+          <div class="dropdown-content">
+            <a href="cho.html">Chó</a>
+            <a href="meo.html">Mèo</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a href="phukien.html">Phụ Kiện</a>
+          <div class="dropdown-content">
+            <a href="thucan.html">Thức ăn</a>
+            <a href="dochoi.html">Đồ chơi</a>
+          </div>
+        </div>
+        <a href="dichvu.html">Dịch Vụ</a>
+        <a href="gioithieu.html">Giới Thiệu</a>
+        <a href="lienhe.html">Liên hệ</a>
+      </nav>
+      <div class="search-cart-wrapper">
+        <div class="search-box">
+          <select>
+            <option>All Categories</option>
+            <option>Chó Nhựt</option>
+            <option>Chó Khiêm</option>
+            <option>Chó Khang</option>
+          </select>
+          <input type="text" placeholder="Tìm kiếm..." />
+          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="giohang">
+          <a href="giohang.html" class="cart-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <nav>
+      <a href="/">Trang chủ</a> > <a href="/thu_cung.html">Thú cưng</a> > <span>Phụ kiện thú cưng</span>
+    </nav>
+    <section>
+      <aside>
+        <h3>Danh mục</h3>
+        <div>
+          <h4>Loại phụ kiện</h4>
+          <ul>
+            <li><a href="#all">Tất cả</a></li>
+            <li><a href="#collar">Vòng cổ</a></li>
+            <li><a href="#clothing">Quần áo</a></li>
+            <li><a href="#bed">Nệm</a></li>
+            <li><a href="#bowl">Bát ăn</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Sắp xếp theo</h4>
+          <select id="sortSelect">
+            <option value="default">Mặc định</option>
+            <option value="price-asc">Giá: Thấp đến cao</option>
+            <option value="price-desc">Giá: Cao đến thấp</option>
+            <option value="name-asc">Tên: A-Z</option>
+            <option value="name-desc">Tên: Z-A</option>
+          </select>
+        </div>
+      </aside>
+
+      <div>
+        <div class="products">
+          <article>
+            <img src="images/products/cat-coat.png" alt="Áo khoác mèo" width="200">
+            <h3>Áo khoác mèo</h3>
+            <p>Áo khoác mèo cao cấp</p>
+            <div class="price-container">
+              <del>250,000₫</del>
+              <strong>199,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/cat-coat">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/cat-bed.png" alt="Nệm mèo" width="200">
+            <h3>Nệm mèo</h3>
+            <p>Nệm mèo cao cấp</p>
+            <div class="price-container">
+              <del>400,000₫</del>
+              <strong>350,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/cat-bed">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/bowl.png" alt="Bát ăn" width="200">
+            <h3>Bát ăn</h3>
+            <p>Bát ăn cao cấp</p>
+            <div class="price-container">
+              <del>180,000₫</del>
+              <strong>150,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/cat-bowl">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/bird-cage.png" alt="Lồng chim" width="200">
+            <h3>Lồng chim</h3>
+            <p>Lồng chim cao cấp</p>
+            <div class="price-container">
+              <del>800,000₫</del>
+              <strong>650,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/bird-cage">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/bowl.png" alt="Bát inox đôi" width="200">
+            <h3>Bát inox đôi</h3>
+            <p>Inox 304, chống trượt</p>
+            <div class="price-container">
+              <del>300,000₫</del>
+              <strong>250,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/bowl-steel">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/cat-bag.png" alt="Ba lô mèo" width="200">
+            <h3>Ba lô mèo</h3>
+            <p>Ba lô mèo cao cấp</p>
+            <div class="price-container">
+              <del>150,000₫</del>
+              <strong>120,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/cat-bag">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/dog-leash.png" alt="Dây dắt chó" width="200">
+            <h3>Dây dắt chó</h3>
+            <p>Dây dắt chó cao cấp</p>
+            <div class="price-container">
+              <del>550,000₫</del>
+              <strong>450,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/dog-leash">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/cat-toy.png" alt="Đồ chơi cho mèo" width="200">
+            <h3>Đồ chơi cho mèo</h3>
+            <p>Đồ chơi mèo cao cấp</p>
+            <div class="price-container">
+              <del>700,000₫</del>
+              <strong>600,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/cat-toy">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/toy-ball.png" alt="Bóng đồ chơi" width="200">
+            <h3>Bóng đồ chơi</h3>
+            <p>Cao su non, có chuông</p>
+            <div class="price-container">
+              <del>90,000₫</del>
+              <strong>75,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/toy-ball">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/cat-brush.png" alt="Lược chải mèo" width="200">
+            <h3>Lược chải mèo</h3>
+            <p>Lược chải mèo cao cấp</p>
+            <div class="price-container">
+              <del>150,000₫</del>
+              <strong>120,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/brush">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/cat-tree.png" alt="Cây mèo" width="200">
+            <h3>Cây mèo</h3>
+            <p>3 tầng, có võng</p>
+            <div class="price-container">
+              <del>850,000₫</del>
+              <strong>750,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/cat-tree">Chi tiết</a>
+            </div>
+          </article>
+
+          <article>
+            <img src="images/products/nail-clipper.png" alt="Kéo cắt móng" width="200">
+            <h3>Kéo cắt móng</h3>
+            <p>Inox cao cấp</p>
+            <div class="price-container">
+              <del>120,000₫</del>
+              <strong>95,000₫</strong>
+            </div>
+            <div class="button-container">
+              <button>Thêm vào giỏ</button>
+              <a href="/product/nail-clipper">Chi tiết</a>
+            </div>
+          </article>
+        </div>
+        <nav class="pagination">
+          <h3>Trang</h3>
+          <ul>
+            <li><a href="?page=1">1</a></li>
+            <li><a href="?page=2">2</a></li>
+            <li><a href="?page=3">3</a></li>
+            <li><a href="?page=4">4</a></li>
+            <li><a href="?page=5">5</a></li>
+            <li><a href="?page=2">Tiếp</a></li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Hàm chuyển đổi chuỗi giá tiền sang số
+    function convertPrice(priceStr) {
+      return parseInt(priceStr.replace(/[^\d]/g, ''));
+    }
+
+    // Hàm sắp xếp sản phẩm
+    function sortProducts(sortType) {
+      const container = document.querySelector('.products');
+      const products = Array.from(container.getElementsByTagName('article'));
+      
+      products.sort((a, b) => {
+        const priceA = convertPrice(a.querySelector('strong').textContent);
+        const priceB = convertPrice(b.querySelector('strong').textContent);
+        const nameA = a.querySelector('h3').textContent.trim();
+        const nameB = b.querySelector('h3').textContent.trim();
+        
+        switch(sortType) {
+          case 'price-asc':
+            return priceA - priceB;
+          case 'price-desc':
+            return priceB - priceA;
+          case 'name-asc':
+            return nameA.localeCompare(nameB, 'vi');
+          case 'name-desc':
+            return nameB.localeCompare(nameA, 'vi');
+          default:
+            // Giữ nguyên thứ tự ban đầu
+            return Array.from(container.children).indexOf(a) - Array.from(container.children).indexOf(b);
+        }
+      });
+
+      // Xóa sản phẩm hiện tại
+      container.innerHTML = '';
+
+      // Thêm lại sản phẩm theo thứ tự mới
+      products.forEach(product => container.appendChild(product));
+    }
+
+    // Xử lý sự kiện thay đổi select
+    document.getElementById('sortSelect').addEventListener('change', function() {
+      sortProducts(this.value);
+    });
+
+    // Lưu trữ thứ tự ban đầu của sản phẩm
+    const container = document.querySelector('.products');
+    const originalOrder = Array.from(container.children);
+  </script>
+  <footer>
+    <div class="footer-columns-wrapper">
+      <div class="footer-column shop">
+        <h2>SHOP <i class="fas fa-shopping-bag"></i></h2>
+        <ul>
+          <li><a href="cho.html">Dành Cho Chó</a></li>
+          <li><a href="meo.html">Dành Cho Mèo</a></li>
+          <li><a href="#">Thương Hiệu</a></li>
+          <li><a href="#">Bộ Sưu Tập</a></li>
+        </ul>
+      </div>
+      <div class="footer-column kagpet">
+        <h2>KAGPET SHOP <i class="fas fa-paw"></i></h2>
+        <ul>
+          <li><a href="gioithieu.html">Giới Thiệu</a></li>
+          <li><a href="#">Thành Viên KAGPET</a></li>
+          <li><a href="#">Điều Khoản Sử Dụng</a></li>
+          <li><a href="#">Tuyển Dụng</a></li>
+        </ul>
+      </div>
+      <div class="footer-column lienlac">
+        <h2>LIÊN HỆ <i class="fas fa-map"></i></h2>
+        <p>
+          <i class="fas fa-map-marker-alt"></i>
+          <span><strong>Địa chỉ: </strong>Chợ lớn</span>
+        </p>
+        <p>
+          <i class="fas fa-phone"></i>
+          <span><strong>Điện thoại: </strong>123456789</span>
+        </p>
+        <p>
+          <i class="fas fa-envelope"></i>
+          <span><strong>Email: </strong>kagpet@gmail.com</span>
+        </p>
+      </div>
+      <div class="footer-column">
+        <h2>MẠNG XÃ HỘI <i class="fa-solid fa-globe"></i></h2>
+        <div class="social-icons-wrapper">
+          <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
