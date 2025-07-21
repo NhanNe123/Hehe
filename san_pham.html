@@ -12,7 +12,7 @@
     /* Điều chỉnh chung cho các màn hình trung bình */
     header {
         flex-wrap: wrap; /* Cho phép các mục trong header xuống dòng */
-        justify-content: center; /* Căn giữa các mục khi xuống dòng */
+        justify-contentdô: center; /* Căn giữa các mục khi xuống dòng */
         padding: 10px;
     }
 
@@ -399,9 +399,9 @@
       margin-top: 0;
     }
 
-    article {
+    sanpham {
       background: white;
-      padding: 15px;
+      padding: 0;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       text-align: center;
@@ -409,36 +409,53 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      overflow: hidden;
     }
 
-    article:hover {
+    sanpham:hover {
       transform: translateY(-5px);
     }
 
-    article img {
+    sanpham img {
       width: 100%;
-      height: 200px;
+      height: 250px;
       object-fit: cover;
-      border-radius: 4px;
       margin-bottom: 10px;
+      transition: transform 0.3s;
     }
 
-    article h3 {
+    sanpham:hover img {
+      transform: scale(1.1);
+    }
+
+    sanpham h3 {
       font-size: 1.1em;
-      margin: 10px 0;
+      margin: 10px 15px;
       color: #333;
       flex-grow: 0;
     }
 
-    article p {
-      margin: 8px 0;
+    sanpham p {
+      margin: 8px 15px;
       color: #666;
       font-size: 0.9em;
       flex-grow: 1;
     }
 
+    sanpham a {
+      display: inline-block;
+      color: #8b76cc;
+      text-decoration: none;
+      padding: 5px 10px;
+      transition: color 0.3s;
+    }
+
+    sanpham a:hover {
+      color: #7561b7;
+    }
+
     .price-container {
-      margin: 10px 0;
+      margin: 10px 15px;
     }
 
     del {
@@ -455,7 +472,8 @@
     }
 
     .button-container {
-      margin-top: auto;
+      margin: 10px 15px;
+      padding-bottom: 15px;
     }
 
     button {
@@ -819,7 +837,7 @@
 
       <div>
         <div class="products">
-          <article>
+          <sanpham>
             <img src="images/products/cat-coat.png" alt="Áo khoác mèo" width="200">
             <h3>Áo khoác mèo</h3>
             <p>Áo khoác mèo cao cấp</p>
@@ -831,9 +849,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/cat-coat">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/cat-bed.png" alt="Nệm mèo" width="200">
             <h3>Nệm mèo</h3>
             <p>Nệm mèo cao cấp</p>
@@ -845,9 +863,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/cat-bed">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/bowl.png" alt="Bát ăn" width="200">
             <h3>Bát ăn</h3>
             <p>Bát ăn cao cấp</p>
@@ -859,9 +877,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/cat-bowl">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/chuong-cho.png" alt="Chuồng chó" width="200">
             <h3>Chuồng chó</h3>
             <p>Chuồng chó cao cấp</p>
@@ -873,9 +891,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/chuong-cho">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/bat-thuc-an.png" alt="Bát thức ăn cho mèo" width="200">
             <h3>Bát thức ăn cho mèo</h3>
             <p>Bát thức ăn cho mèo cao cấp</p>
@@ -887,9 +905,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/bat-thuc-an">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/cat-bag.png" alt="Ba lô mèo" width="200">
             <h3>Ba lô mèo</h3>
             <p>Ba lô mèo cao cấp</p>
@@ -901,9 +919,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/cat-bag">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/dog-leash.png" alt="Dây dắt chó" width="200">
             <h3>Dây dắt chó</h3>
             <p>Dây dắt chó cao cấp</p>
@@ -915,9 +933,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/dog-leash">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/cat-toy.png" alt="Đồ chơi cho mèo" width="200">
             <h3>Đồ chơi cho mèo</h3>
             <p>Đồ chơi mèo cao cấp</p>
@@ -929,9 +947,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/cat-toy">Chi tiết</a>
             </div>
-          </article>
+            </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/toy-ball.png" alt="Bóng đồ chơi" width="200">
             <h3>Bóng đồ chơi</h3>
             <p>Cao su non, có chuông</p>
@@ -943,9 +961,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/toy-ball">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/cat-brush.png" alt="Lược chải mèo" width="200">
             <h3>Lược chải mèo</h3>
             <p>Lược chải mèo cao cấp</p>
@@ -957,9 +975,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/brush">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/cat-tree.png" alt="Cây mèo" width="200">
             <h3>Cây mèo</h3>
             <p>3 tầng, có võng</p>
@@ -971,9 +989,9 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/cat-tree">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
 
-          <article>
+          <sanpham>
             <img src="images/products/nail-clipper.png" alt="Kéo cắt móng" width="200">
             <h3>Kéo cắt móng</h3>
             <p>Inox cao cấp</p>
@@ -985,7 +1003,7 @@
               <button>Thêm vào giỏ</button>
               <a href="/product/nail-clipper">Chi tiết</a>
             </div>
-          </article>
+          </sanpham>
         </div>
         <nav class="pagination">
           <h3>Trang</h3>
@@ -1030,7 +1048,7 @@
     // Hàm sắp xếp sản phẩm
     async function sortProducts(sortType) {
       const container = document.querySelector('.products');
-      const products = Array.from(container.getElementsByTagName('article'));
+      const products = Array.from(container.getElementsByTagName('sanpham'));
       
       // Lưu trữ thứ tự ban đầu nếu chưa có
       if (originalProducts.length === 0) {
@@ -1094,31 +1112,31 @@
     // Xử lý sự kiện click cho tất cả nút "Thêm vào giỏ hàng"
     document.querySelectorAll('button').forEach(button => {
       button.addEventListener('click', function(e) {
-        const article = e.target.closest('article');
-        const product = {
-          id: article.querySelector('a').href.split('/').pop(),
-          name: article.querySelector('h3').textContent,
-          price: article.querySelector('strong').textContent,
-          image: article.querySelector('img').src
+        const product = e.target.closest('sanpham');
+        const productData = {
+          id: product.querySelector('a').href.split('/').pop(),
+          name: product.querySelector('h3').textContent,
+          price: product.querySelector('strong').textContent,
+          image: product.querySelector('img').src
         };
 
         // Lấy giỏ hàng hiện tại
-        const cart = JSON.parse(localStorage.getItem('cart'));
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
         
         // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-        const existingProduct = cart.find(item => item.id === product.id);
+        const existingProduct = cart.find(item => item.id === productData.id);
         
         if (existingProduct) {
           existingProduct.quantity = (existingProduct.quantity || 1) + 1;
         } else {
-          cart.push({...product, quantity: 1});
+          cart.push({...productData, quantity: 1});
         }
 
         // Lưu giỏ hàng mới vào localStorage
         localStorage.setItem('cart', JSON.stringify(cart));
 
         // Hiển thị thông báo
-        alert('Đã thêm ' + product.name + ' vào giỏ hàng!');
+        alert('Đã thêm ' + productData.name + ' vào giỏ hàng!');
       });
     });
   </script>
