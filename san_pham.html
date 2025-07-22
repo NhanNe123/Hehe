@@ -12,7 +12,7 @@
     /* Điều chỉnh chung cho các màn hình trung bình */
     header {
         flex-wrap: wrap; /* Cho phép các mục trong header xuống dòng */
-        justify-contentdô: center; /* Căn giữa các mục khi xuống dòng */
+        justify-content: center; /* Căn giữa các mục khi xuống dòng */
         padding: 10px;
     }
 
@@ -158,16 +158,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 20px;
+      padding: 15px 20px;
       border-bottom: 1px solid #eee;
-      gap: 5px;
       background-color: bisque;
+      margin-top: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     #logo {
       height: 100px;
       width: 100px;
       flex-shrink: 0;
+      margin: 5px 0;
     }
 
     .header-right-content {
@@ -180,15 +182,9 @@
 
     nav {
       display: flex;
+      align-items: center;
       gap: 15px;
-      margin-top: 0;
       flex-shrink: 0;
-      align-items: center;
-    }
-
-    nav > * {
-      display: inline-flex;
-      align-items: center;
     }
 
     nav a {
@@ -201,16 +197,26 @@
       white-space: nowrap;
     }
 
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown > a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
     nav a:hover {
       background-color: gainsboro;
     }
 
     .search-cart-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+      }
 
     .search-box {
       display: flex;
@@ -278,23 +284,25 @@
       background-color: gainsboro;
     }
 
-    .dropdown > a {
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 12px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
+    .dropdown {
+      position: relative;
+      display: inline-block;
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
+      top: 100%;
+      left: 0;
       background-color: white;
       min-width: 160px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      z-index: 1000;
+      border-radius: 4px;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
 
     .dropdown-content a {
@@ -302,14 +310,11 @@
       padding: 10px 15px;
       text-decoration: none;
       display: block;
+      text-align: left;
     }
 
     .dropdown-content a:hover {
       background-color: gainsboro;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
     }
 
     * {
@@ -320,18 +325,19 @@
     
     body {
       font-family: Arial, sans-serif;
-      /* line-height: 1.6; */
-      padding: 20px;
+      padding: 0;
+      margin: 0;
       background-color: gainsboro;
     }
 
     main {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 20px;
     }
 
     nav {
-      margin: 20px 0;
+      margin: 0 0 20px 0;
     }
 
     nav a {
@@ -352,7 +358,7 @@
       display: flex;
       gap: 30px;
       align-items: flex-start;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     aside {
@@ -382,7 +388,7 @@
       color: #8b76cc;
     }
 
-    select.filter {
+    select {
       width: 100%;
       padding: 8px;
       border: 1px solid #ddd;
@@ -396,7 +402,6 @@
       gap: 20px;
       flex: 1;
       width: 100%;
-      margin-top: 0;
     }
 
     sanpham {
@@ -578,19 +583,19 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      article {
+      sanpham {
         padding: 10px;
       }
 
-      article img {
+      sanpham img {
         height: 150px;
       }
 
-      article h3 {
+      sanpham h3 {
         font-size: 1em;
       }
 
-      article p {
+      sanpham p {
         font-size: 0.85em;
       }
 
@@ -617,7 +622,7 @@
         grid-template-columns: 1fr;
       }
 
-      article {
+      sanpham {
         margin-bottom: 15px;
       }
 
@@ -764,7 +769,6 @@
     <a href="trangchu.html">
       <img src="logopet.png" id="logo" alt="Logo KAO PET" />
     </a>
-
     <div class="header-right-content">
       <nav>
         <a href="trangchu.html">Trang chủ</a>
@@ -1164,15 +1168,15 @@
         <h2>LIÊN HỆ <i class="fas fa-map"></i></h2>
         <p>
           <i class="fas fa-map-marker-alt"></i>
-          <span><strong>Địa chỉ: </strong>Chợ lớn</span>
+          <span><b>Địa chỉ: </b>Chợ lớn</span>
         </p>
         <p>
           <i class="fas fa-phone"></i>
-          <span><strong>Điện thoại: </strong>123456789</span>
+          <span><b>Điện thoại: </b>123456789</span>
         </p>
         <p>
           <i class="fas fa-envelope"></i>
-          <span><strong>Email: </strong>kagpet@gmail.com</span>
+          <span><b>Email: </b>kagpet@gmail.com</span>
         </p>
       </div>
       <div class="footer-column">
